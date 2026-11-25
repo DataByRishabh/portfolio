@@ -172,11 +172,20 @@ export default function AsciiPortrait({ motionEnabled }) {
           className="absolute inset-0 w-full h-full block pointer-events-none"
         />
 
+        {/* Top-left clear hover cue */}
+        {!asciiMode && (
+          <div className="absolute top-3 left-3 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-[#FF8C59]/40 pointer-events-none">
+            <span className="font-mono-code text-[9px] uppercase tracking-wider text-[#FF8C59]">
+              Hover for Color &amp; Lens
+            </span>
+          </div>
+        )}
+
         {/* Bottom Interactive Pill */}
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 bg-black/85 backdrop-blur-md border border-[rgba(204,220,245,0.16)]">
           <span className="eyebrow text-[#F1EEE8] flex items-center gap-1.5">
             <Sparkles className="w-3 h-3 text-[#FF8C59]" />
-            {asciiMode ? 'Alphabet Matrix' : 'Hover / Click → Alphabets'}
+            {asciiMode ? 'Alphabet Matrix' : 'Hover: Color + Matrix · Click: Morph'}
           </span>
           <span className="font-pixel text-xs text-[#FF8C59]">
             {asciiMode ? 'PHOTO' : 'A–Z'}

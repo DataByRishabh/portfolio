@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import AsciiPortrait from './components/AsciiPortrait';
 import CredentialsVault from './components/CredentialsVault';
+import CustomCursor from './components/CustomCursor';
 import DataArchitectureVisual from './components/DataArchitectureVisual';
 import DataWorkbench from './components/DataWorkbench';
 import LivingDataUniverse from './components/LivingDataUniverse';
@@ -67,8 +68,9 @@ function Reveal({ children, className = '', delayClass = '' }) {
 }
 
 export default function App() {
-  const [motionEnabled, setMotionEnabled] = useState(true);
+  const motionEnabled = true;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [projectsOpen, setProjectsOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('All');
   const [openCapability, setOpenCapability] = useState('bi-dax');
   const [selectedProjectModal, setSelectedProjectModal] = useState(null);
@@ -191,6 +193,9 @@ export default function App() {
         motionEnabled ? 'motion-enabled' : ''
       }`}
     >
+      {/* Custom Colored Cursor */}
+      <CustomCursor />
+
       {/* Mouse Spotlight */}
       {motionEnabled && <div className="cursor-spotlight" aria-hidden="true" />}
 
@@ -323,15 +328,6 @@ export default function App() {
           </div>
         )}
       </header>
-
-      {/* Bottom-Right Fixed Motion Toggle */}
-      <button
-        onClick={() => setMotionEnabled((prev) => !prev)}
-        className="motion-toggle-fixed inline-flex items-center gap-2 hover:border-[#FF8C59] transition-colors cursor-pointer"
-      >
-        <Sparkles className="w-3 h-3 text-[#FF8C59]" />
-        <span>{motionEnabled ? 'Motion: On' : 'Motion: Off'}</span>
-      </button>
 
       <main id="top" className="relative z-10">
         {/* LAPZ-STYLE STICKY SCROLL-ZOOM HERO WRAPPER */}
@@ -582,13 +578,14 @@ export default function App() {
         </section>
 
         {/* SELECTED WORK (Editorial Browser-Framed Showcase) */}
+        {/* SELECTED WORK (Collapsible Projects Dropdown) */}
         <section
           id="work"
-          className="gutter-box py-24 border-b border-[rgba(204,220,245,0.14)]"
+          className="gutter-box py-20 border-b border-[rgba(204,220,245,0.14)]"
         >
           <Reveal>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end pb-14 mb-16 border-b border-[rgba(204,220,245,0.14)]">
-              <div className="lg:col-span-7">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8">
+              <div>
                 <span className="eyebrow text-[#FF8C59] block mb-3">
                   <ScrambleText
                     text="01 / Selected Work"
@@ -602,8 +599,39 @@ export default function App() {
                 </h2>
               </div>
 
-              <div className="lg:col-span-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4">
-                <div className="flex flex-wrap items-center gap-2.5">
+              <button
+                type="button"
+                onClick={() => setProjectsOpen((prev) => !prev)}
+                aria-expanded={projectsOpen}
+                className="group inline-flex items-center justify-between gap-5 px-6 py-4 rounded-2xl border border-[rgba(204,220,245,0.2)] bg-[#0A0A0D] hover:border-[#FF8C59] transition-all duration-300 cursor-pointer text-left"
+              >
+                <div>
+                  <span className="eyebrow text-[#FF8C59] block">
+                    {projectsOpen ? 'Hide Projects' : `View Projects (0${projects.length})`}
+                  </span>
+                  <span className="text-xs text-[#AAA9A4] mt-1 block">
+                    {projectsOpen
+                      ? 'Hover on any project card for 3D tilt & preview'
+                      : 'Click dropdown to explore · Hover cards to interact'}
+                  </span>
+                </div>
+                <span
+                  className={`w-9 h-9 rounded-full border border-[rgba(204,220,245,0.18)] flex items-center justify-center transition-transform duration-300 ${
+                    projectsOpen
+                      ? 'rotate-180 bg-[#FF8C59] text-[#030303] border-[#FF8C59]'
+                      : 'text-[#F1EEE8] group-hover:border-[#FF8C59] group-hover:text-[#FF8C59]'
+                  }`}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </span>
+              </button>
+            </div>
+          </Reveal>
+
+          {projectsOpen && (
+            <div className="pt-8 border-t border-[rgba(204,220,245,0.14)]">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-14">
+                <div className="flex flex-wrap items-center gap-2">
                   {filterTabs.map((tab) => {
                     const isActive = activeFilter === tab.id;
                     return (
@@ -611,18 +639,16 @@ export default function App() {
                         key={tab.id}
                         type="button"
                         onClick={() => setActiveFilter(tab.id)}
-                        className={`inline-flex items-center gap-2.5 px-5 py-3 rounded-xl text-xs font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
+                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium tracking-wide transition-all duration-200 cursor-pointer ${
                           isActive
-                            ? 'bg-[#FF8C59] text-[#030303] shadow-[0_0_24px_rgba(255,140,89,0.35)] scale-[1.02]'
-                            : 'bg-[#0C0C0F] border border-[rgba(204,220,245,0.2)] text-[#F1EEE8] hover:border-[#FF8C59] hover:bg-[#141418]'
+                            ? 'bg-[#FF8C59] text-[#030303] font-semibold'
+                            : 'bg-[#0C0C0F] border border-[rgba(204,220,245,0.16)] text-[#AAA9A4] hover:border-[#FF8C59] hover:text-[#F1EEE8]'
                         }`}
                       >
                         <span>{tab.label}</span>
                         <span
-                          className={`font-mono-code text-[10px] px-1.5 py-0.5 rounded ${
-                            isActive
-                              ? 'bg-[#030303]/15 text-[#030303]'
-                              : 'bg-white/[0.06] text-[#FF8C59]'
+                          className={`font-mono-code text-[10px] ${
+                            isActive ? 'text-[#030303]/80' : 'text-[#FF8C59]'
                           }`}
                         >
                           0{tab.count}
@@ -631,15 +657,12 @@ export default function App() {
                     );
                   })}
                 </div>
+                <span className="eyebrow text-[#AAA9A4]">
+                  Hover on cards to tilt &amp; inspect
+                </span>
               </div>
-            </div>
-          </Reveal>
 
-          <Reveal>
-            <ModelTrainingPipeline motionEnabled={motionEnabled} />
-          </Reveal>
-
-          <div className="space-y-24">
+              <div className="space-y-24">
             {visibleProjects.map((project, idx) => {
               const domainLabel =
                 project.id === 'ecommerce-powerbi'
@@ -763,7 +786,9 @@ export default function App() {
                 </Reveal>
               );
             })}
-          </div>
+              </div>
+            </div>
+          )}
         </section>
 
         {/* RESEARCH PUBLICATION & CREDENTIALS (Right after Selected Work!) */}
@@ -940,6 +965,7 @@ export default function App() {
           </div>
 
           <Reveal className="mt-14">
+            <ModelTrainingPipeline motionEnabled={motionEnabled} />
             <DataWorkbench />
           </Reveal>
         </section>
