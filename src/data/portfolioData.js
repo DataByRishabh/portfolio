@@ -54,10 +54,10 @@ export const projects = [
       'Designed and modeled an executive Power BI report analyzing 1,425 completed orders across 300 customers. Surfaces monthly revenue velocity, category-level profit margins, and top-performing SKUs.',
     highlights: [
       'Tracked 6 core KPIs: 3.35M Total Revenue, 1.26M Net Profit, 35.83% Margin, 1,425 Orders, ₹2,347.58 AOV, and 300 Customers',
-      'Built Star Schema linking OrdersTable, ProductsTable, and DateTable with interactive Date & Category slicers',
+      'Built relational data model linking OrdersTable, ProductsTable, and DateTable with interactive Date & Category slicers',
       'Identified Home & Kitchen as top revenue driver while Fashion led in Profit Margin %',
     ],
-    tags: ['Power BI', 'DAX', 'Star Schema', 'KPI Modeling', 'Time-Series'],
+    tags: ['Power BI', 'DAX', 'Data Modeling', 'KPI Modeling', 'Time-Series'],
     kpis: [
       { label: 'Total Revenue', value: '3.35M' },
       { label: 'Net Profit', value: '1.26M' },
@@ -132,7 +132,7 @@ export const capabilities = [
     number: '01',
     title: 'Business Intelligence & Power BI',
     tagline: 'Turning complex datasets into executive-ready visual stories.',
-    skills: ['Power BI Desktop', 'DAX Measures', 'Power Query (ETL)', 'Star Schema Modeling', 'KPI Cards & Slicers'],
+    skills: ['Power BI Desktop', 'DAX Measures', 'Power Query (ETL)', 'Data Modeling', 'KPI Cards & Slicers'],
     details:
       'Hands-on experience building clean data models, writing custom DAX calculations (DIVIDE, aggregations, time intelligence), and designing high-contrast, decision-focused dashboards.',
   },
@@ -201,7 +201,7 @@ export const certifications = [
     issuer: 'MAT Journals · 3rd Prize at National Anveshnam Workshop',
     date: 'Apr 2026',
     detail:
-      'Won 3rd Prize at the National Level Anveshnam Workshop (SJCEM) and published in MAT Journals (Vol. 12, Issue 1, 2026). Uses Multivariate Linear Regression, Gaussian noise characterization, Fisher’s Kurtosis, and ArUco vision resets.',
+      'Won 3rd Prize at the National Level Anveshnam Workshop (SJCEM) and published in MAT Journals (Vol. 12, Issue 1, 2026). Uses Statistical Machine Learning, Gaussian noise characterization, Fisher’s Kurtosis, and ArUco vision resets.',
     image: 'images/certs/cert-mat-publication.jpg',
   },
   {

@@ -3,13 +3,13 @@
 > B.Tech Data Science student (2025–2029) at St. John College of Engineering and Management, Palghar, Maharashtra, India. Focused on Power BI, DAX, SQL, Python, and AI-accelerated product building.
 
 ## Core Competencies (Hands-On)
-- Business Intelligence: Microsoft Power BI Desktop, DAX Measures, Star Schema Data Modeling, Power Query (ETL), KPI Design
+- Business Intelligence: Microsoft Power BI Desktop, DAX Measures, Relational Data Modeling, Power Query (ETL), KPI Design
 - Querying & Programming: SQL (Basic to Intermediate), C, C++
 - AI & LLMs: Prompt Engineering, Large Language Models (LLMs), AI-Assisted Development (Antigravity)
 - Content & Growth: YouTube Channel Management, Content Strategy, Audience Analytics
 
 ## Selected Projects
-1. **E-Commerce Sales, Profit & Customer Analytics** (Power BI, DAX, Star Schema)
+1. **E-Commerce Sales, Profit & Customer Analytics** (Power BI, DAX, Data Modeling)
    - Repository: https://github.com/DataByRishabh/powerbi-analytics-portfolio/tree/main/01-ecommerce-sales-analytics
    - Tracks 6 KPIs: Completed Sales, Net Profit, Profit Margin %, Total Orders, Average Order Value (AOV), Total Customers.
 2. **Vyronix / Prana AI — Smart Fitness Platform** (AI-Assisted Build via Antigravity)

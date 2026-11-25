@@ -78,7 +78,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <div className="sm:col-span-9 text-[12px] leading-[1.55] text-[#222222]">
               B.Tech Data Science student (2025–2029) focused on Business
               Intelligence, Data Analytics, and AI/ML exploration. Experienced in
-              building executive Power BI dashboards with DAX and Star Schema
+              building executive Power BI dashboards with DAX and relational data
               modeling, practicing SQL queries (beginner–intermediate), and
               co-authoring peer-reviewed academic research.
             </div>
@@ -135,7 +135,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                       Built an interactive Power BI dashboard tracking 3.35M Total Revenue, 1.26M Net Profit, 35.83% Profit Margin, 1,425 Orders, ₹2,347.58 AOV, and 300 Customers.
                     </li>
                     <li>
-                      Modeled Star Schema relationships across OrdersTable, ProductsTable, and DateTable with custom DAX measures and Category/Date slicers.
+                      Modeled relational table links across OrdersTable, ProductsTable, and DateTable with custom DAX measures and Category/Date slicers.
                     </li>
                   </ul>
                 </div>
@@ -246,7 +246,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                   BI &amp; ANALYTICS:
                 </div>
                 <div className="sm:col-span-9 text-[#222222]">
-                  Microsoft Power BI Desktop, DAX, Star Schema Modeling, Power Query, KPI Design
+                  Microsoft Power BI Desktop, DAX, Data Modeling, Power Query, KPI Design
                 </div>
               </div>
 

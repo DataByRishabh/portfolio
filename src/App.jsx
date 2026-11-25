@@ -19,8 +19,12 @@ import AsciiPortrait from './components/AsciiPortrait';
 import CredentialsVault from './components/CredentialsVault';
 import DataArchitectureVisual from './components/DataArchitectureVisual';
 import DataWorkbench from './components/DataWorkbench';
+import LivingDataUniverse from './components/LivingDataUniverse';
+import ModelTrainingPipeline from './components/ModelTrainingPipeline';
+import ParticleNameReveal from './components/ParticleNameReveal';
 import ResumeModal from './components/ResumeModal';
 import ScrambleText from './components/ScrambleText';
+import TiltCard from './components/TiltCard';
 import {
   capabilities,
   certifications,
@@ -71,8 +75,11 @@ export default function App() {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [identityLayer, setIdentityLayer] = useState('portrait');
+  const [journeyProgress, setJourneyProgress] = useState(0);
   const rootRef = useRef(null);
   const heroRef = useRef(null);
+  const journeyRef = useRef(null);
 
   // Lenis Smooth Inertia Scroll — deferred after initial paint for 0ms TBT
   useEffect(() => {
@@ -113,6 +120,14 @@ export default function App() {
       if (heroRef.current) {
         const p = Math.min(1, Math.max(0, scrollTop / vh));
         heroRef.current.style.setProperty('--hero-p', p.toFixed(4));
+      }
+      if (journeyRef.current) {
+        const jRect = journeyRef.current.getBoundingClientRect();
+        const jp = Math.min(
+          1,
+          Math.max(0, (vh * 0.78 - jRect.top) / Math.max(1, jRect.height * 0.75))
+        );
+        setJourneyProgress(jp);
       }
       // Page-wide scroll scrubbing for all [data-scroll-card] sections
       if (motionEnabled) {
@@ -178,6 +193,9 @@ export default function App() {
     >
       {/* Mouse Spotlight */}
       {motionEnabled && <div className="cursor-spotlight" aria-hidden="true" />}
+
+      {/* Living Data Universe: Magnetic Particles + Click Ripples + Data Trail */}
+      <LivingDataUniverse motionEnabled={motionEnabled} />
 
       {/* Scroll Progress Bar */}
       <div
@@ -346,11 +364,7 @@ export default function App() {
                 />
               </p>
 
-              <h1 className="font-syne text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-[-0.03em] leading-[0.95] text-[#F1EEE8] mb-5">
-                RISHABH
-                <br />
-                SONAWANE<span className="text-[#FF8C59]">.</span>
-              </h1>
+              <ParticleNameReveal motionEnabled={motionEnabled} />
 
               <p className="font-serif-display text-2xl sm:text-4xl text-[#F1EEE8] leading-tight mb-5">
                 Turning raw data into{' '}
@@ -414,9 +428,120 @@ export default function App() {
               </div>
             </div>
 
-            {/* Interactive Portrait + Alphabet Matrix (Razorpay AI Builders Inspired) */}
+            {/* Holographic 3D Identity Card + Alphabet Matrix */}
             <div className="lg:col-span-5 hero-portrait-parallax">
-              <AsciiPortrait motionEnabled={motionEnabled} />
+              <TiltCard
+                motionEnabled={motionEnabled}
+                maxTilt={7}
+                className="max-w-[340px] mx-auto rounded-2xl"
+              >
+                <div className="mb-2.5 flex items-center justify-center gap-1.5">
+                  {[
+                    { id: 'portrait', label: 'Identity' },
+                    { id: 'education', label: 'Edu' },
+                    { id: 'skills', label: 'Stack' },
+                    { id: 'goals', label: 'Goals' },
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setIdentityLayer(tab.id)}
+                      className={`px-2.5 py-1 rounded-full font-mono-code text-[10px] uppercase tracking-wider border transition-colors cursor-pointer ${
+                        identityLayer === tab.id
+                          ? 'bg-[#FF8C59] text-[#030303] border-[#FF8C59] font-semibold'
+                          : 'bg-[#0A0A0C]/90 text-[#AAA9A4] border-[rgba(204,220,245,0.16)] hover:border-[#FF8C59]/60 hover:text-[#F1EEE8]'
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                {identityLayer === 'portrait' ? (
+                  <AsciiPortrait motionEnabled={motionEnabled} />
+                ) : (
+                  <div className="w-full aspect-[4/5] border border-[rgba(204,220,245,0.2)] bg-gradient-to-b from-[#0E0E13] via-[#08080A] to-[#050507] p-6 flex flex-col justify-between relative overflow-hidden">
+                    <div
+                      className="absolute inset-0 opacity-25 pointer-events-none"
+                      style={{
+                        background:
+                          'radial-gradient(circle at 80% 18%, rgba(255,140,89,0.28), transparent 55%)',
+                      }}
+                    />
+                    <div className="relative z-10">
+                      <span className="eyebrow text-[#FF8C59] block mb-2">
+                        Holographic Layer · {identityLayer}
+                      </span>
+                      {identityLayer === 'education' && (
+                        <>
+                          <h3 className="font-serif-display text-3xl text-[#F1EEE8] mb-3">
+                            B.Tech Data Science
+                          </h3>
+                          <p className="text-sm text-[#AAA9A4] leading-relaxed mb-4">
+                            St. John College of Engineering &amp; Management
+                            (2025–2029), Palghar.
+                          </p>
+                          <div className="space-y-2 text-xs font-mono-code text-[#D8D5CE]">
+                            <div className="p-2.5 border border-white/10 bg-white/[0.02]">
+                              MAT Journal Publication (2026)
+                            </div>
+                            <div className="p-2.5 border border-white/10 bg-white/[0.02]">
+                              Anveshnam Workshop · 3rd Prize
+                            </div>
+                          </div>
+                        </>
+                      )}
+                      {identityLayer === 'skills' && (
+                        <>
+                          <h3 className="font-serif-display text-3xl text-[#F1EEE8] mb-3">
+                            Core Stack
+                          </h3>
+                          <div className="flex flex-wrap gap-2 mt-2">
+                            {[
+                              'Power BI',
+                              'DAX',
+                              'Power Query',
+                              'Data Modeling',
+                              'SQL',
+                              'C / C++',
+                              'Statistical ML',
+                              'Prompt Logic',
+                            ].map((s) => (
+                              <span
+                                key={s}
+                                className="eyebrow px-2.5 py-1 border border-[#FF8C59]/35 bg-[#FF8C59]/10 text-[#FF8C59]"
+                              >
+                                {s}
+                              </span>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                      {identityLayer === 'goals' && (
+                        <>
+                          <h3 className="font-serif-display text-3xl text-[#F1EEE8] mb-3">
+                            2026 Focus
+                          </h3>
+                          <p className="text-sm text-[#AAA9A4] leading-relaxed mb-4">
+                            Seeking Data Analytics internships, BI dashboard
+                            collaborations, and applied ML research projects.
+                          </p>
+                          <div className="p-3 border border-[#FF8C59]/30 bg-[#FF8C59]/10 font-mono-code text-xs text-[#FF8C59]">
+                            Status: Open to Internships &amp; Data Roles
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setIdentityLayer('portrait')}
+                      className="relative z-10 w-full py-2 border border-[rgba(204,220,245,0.18)] font-mono-code text-[10px] uppercase tracking-wider text-[#AAA9A4] hover:border-[#FF8C59] hover:text-[#FF8C59] transition-colors cursor-pointer"
+                    >
+                      ← Back to Portrait Lens
+                    </button>
+                  </div>
+                )}
+              </TiltCard>
             </div>
           </div>
 
@@ -510,6 +635,10 @@ export default function App() {
             </div>
           </Reveal>
 
+          <Reveal>
+            <ModelTrainingPipeline motionEnabled={motionEnabled} />
+          </Reveal>
+
           <div className="space-y-24">
             {visibleProjects.map((project, idx) => {
               const domainLabel =
@@ -527,16 +656,21 @@ export default function App() {
                     data-scroll-card
                     className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center"
                   >
-                    {/* Left: Sleek Browser-Framed Visual */}
+                    {/* Left: Sleek Browser-Framed Visual with 3D Perspective Tilt */}
                     <div className="lg:col-span-6 scroll-depth-visual">
-                      <div
-                        onClick={() =>
-                          project.daxSnippet
-                            ? setSelectedProjectModal(project)
-                            : window.open(project.link, '_blank', 'noreferrer')
-                        }
-                        className="relative rounded-2xl border border-[rgba(204,220,245,0.16)] bg-[#0A0A0D] overflow-hidden cursor-pointer group shadow-2xl hover:border-[#FF8C59]/60 transition-colors duration-300"
+                      <TiltCard
+                        motionEnabled={motionEnabled}
+                        maxTilt={6}
+                        className="rounded-2xl"
                       >
+                        <div
+                          onClick={() =>
+                            project.daxSnippet
+                              ? setSelectedProjectModal(project)
+                              : window.open(project.link, '_blank', 'noreferrer')
+                          }
+                          className="relative rounded-2xl border border-[rgba(204,220,245,0.16)] bg-[#0A0A0D] overflow-hidden cursor-pointer group shadow-2xl hover:border-[#FF8C59]/60 transition-colors duration-300"
+                        >
                         <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(204,220,245,0.1)] bg-[#0E0E12]">
                           <div className="flex items-center gap-1.5">
                             <span className="w-2.5 h-2.5 rounded-full bg-[#FF8C59]/60" />
@@ -566,6 +700,7 @@ export default function App() {
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
                       </div>
+                      </TiltCard>
                     </div>
 
                     {/* Right: Clean Editorial Story + Bold Tactile Buttons */}
@@ -667,14 +802,14 @@ export default function App() {
                 <p className="text-sm text-[#AAA9A4] leading-relaxed mb-6">
                   Presented at the National Level Anveshnam Workshop (3rd Prize)
                   and published in the Journal of Statistics and Mathematical
-                  Engineering. Replaces expensive 3D LiDAR with Multivariate
-                  Linear Regression, Gaussian noise modeling, Fisher&apos;s
+                  Engineering. Replaces expensive 3D LiDAR with Statistical
+                  Machine Learning, Gaussian noise modeling, Fisher&apos;s
                   Kurtosis, and ArUco vision resets.
                 </p>
 
                 <div className="flex flex-wrap gap-2">
                   {[
-                    'Multivariate Linear Regression',
+                    'Statistical Machine Learning',
                     'Gaussian Noise Modeling',
                     "Fisher's Kurtosis",
                     'ArUco Vision Resets',
@@ -861,9 +996,10 @@ export default function App() {
           </div>
         </section>
 
-        {/* EDUCATION & JOURNEY */}
+        {/* EDUCATION & JOURNEY (Self-Drawing Scroll Timeline) */}
         <section
           id="journey"
+          ref={journeyRef}
           className="gutter-box py-24 border-b border-[rgba(204,220,245,0.14)]"
         >
           <Reveal>
@@ -875,21 +1011,51 @@ export default function App() {
               <span className="italic text-[#AAA9A4]">Journey</span>
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-[rgba(204,220,245,0.14)] pt-8">
-              {journey.map((item, idx) => (
-                <div key={idx} className="relative">
-                  <span className="eyebrow text-[#FF8C59] block mb-2">
-                    {item.period}
-                  </span>
-                  <h3 className="text-lg font-medium text-[#F1EEE8] mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-[#FF8C59]/90 mb-3">{item.place}</p>
-                  <p className="text-sm text-[#AAA9A4]/90 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
+            {/* Self-drawing horizontal timeline track */}
+            <div className="relative h-px bg-[rgba(204,220,245,0.14)] mb-10">
+              <div
+                className="absolute top-0 left-0 h-[2px] -translate-y-1/2 bg-[#FF8C59] shadow-[0_0_12px_rgba(255,140,89,0.7)] transition-[width] duration-150 ease-out"
+                style={{
+                  width: `${
+                    motionEnabled ? Math.round(journeyProgress * 100) : 100
+                  }%`,
+                }}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {journey.map((item, idx) => {
+                const threshold = idx / Math.max(1, journey.length);
+                const isActive = !motionEnabled || journeyProgress >= threshold;
+                return (
+                  <div
+                    key={idx}
+                    className={`relative pt-4 transition-all duration-500 ${
+                      isActive ? 'opacity-100' : 'opacity-45'
+                    }`}
+                  >
+                    <div
+                      className={`w-2.5 h-2.5 rounded-full mb-4 transition-all duration-500 ${
+                        isActive
+                          ? 'bg-[#FF8C59] shadow-[0_0_12px_rgba(255,140,89,0.85)] scale-110'
+                          : 'bg-[#26262b] border border-[rgba(204,220,245,0.2)]'
+                      }`}
+                    />
+                    <span className="eyebrow text-[#FF8C59] block mb-2">
+                      {item.period}
+                    </span>
+                    <h3 className="text-lg font-medium text-[#F1EEE8] mb-1">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-[#FF8C59]/90 mb-3">
+                      {item.place}
+                    </p>
+                    <p className="text-sm text-[#AAA9A4]/90 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </Reveal>
         </section>

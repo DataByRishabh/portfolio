@@ -299,6 +299,25 @@ body {
   background: var(--accent);
 }
 
+/* Pipeline active pulse */
+@keyframes pipelineSweep {
+  0% {
+    transform: translateX(-60%);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 0.85;
+  }
+}
+
+.motion-enabled .pipeline-pulse {
+  animation: pipelineSweep 1.8s ease-out infinite;
+}
+
 /* Clean 1-page PDF Print styling for ResumeModal */
 @media print {
   @page {
