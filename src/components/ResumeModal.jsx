@@ -1,5 +1,6 @@
 import React from 'react';
 import { Download, Printer, X } from 'lucide-react';
+import { downloadResumePdf } from '../utils/generateResumePdf';
 
 export default function ResumeModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -10,27 +11,38 @@ export default function ResumeModal({ isOpen, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-start justify-center p-3 sm:p-6 overflow-y-auto print:p-0 print:bg-white print:static"
+      className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-start justify-center p-2.5 sm:p-6 overflow-y-auto print:p-0 print:bg-white print:static"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-[820px] my-4 print:my-0 print:max-w-none"
+        className="w-full max-w-[820px] my-2 sm:my-4 print:my-0 print:max-w-none"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Action Bar (Hidden when printing) */}
-        <div className="flex items-center justify-between mb-3 px-4 py-3 bg-[#0E0E12] border border-[rgba(204,220,245,0.18)] rounded-xl print:hidden">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 px-4 py-3 bg-[#0E0E12] border border-[rgba(204,220,245,0.18)] rounded-xl print:hidden">
           <span className="eyebrow text-[#FF8C59]">
             ATS-Ready Academic &amp; Data Science Resume
           </span>
-          <div className="flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={handlePrint}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF8C59] text-[#030303] text-xs font-semibold hover:bg-[#F1EEE8] transition-colors cursor-pointer"
-            >
-              <Download className="w-3.5 h-3.5" />
-              Save as PDF / Print
-            </button>
+          <div className="flex items-center justify-between sm:justify-end gap-2">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={downloadResumePdf}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF8C59] text-[#030303] text-xs font-semibold hover:bg-[#F1EEE8] transition-colors cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Download PDF
+              </button>
+              <button
+                type="button"
+                onClick={handlePrint}
+                aria-label="Print Resume"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-white/15 text-xs text-[#AAA9A4] hover:text-white hover:border-[#FF8C59] transition-colors cursor-pointer"
+              >
+                <Printer className="w-3.5 h-3.5" />
+                Print
+              </button>
+            </div>
             <button
               type="button"
               onClick={onClose}
@@ -45,7 +57,7 @@ export default function ResumeModal({ isOpen, onClose }) {
         {/* Crisp White Paper Resume Sheet (Exact Template Style) */}
         <div
           id="printable-resume"
-          className="bg-white text-[#111111] px-8 sm:px-12 py-10 shadow-2xl print:shadow-none print:px-8 print:py-6"
+          className="bg-white text-[#111111] px-5 sm:px-12 py-7 sm:py-10 shadow-2xl print:shadow-none print:px-8 print:py-6"
           style={{ fontFamily: 'Georgia, "Times New Roman", Times, serif' }}
         >
           {/* Centered Header */}
