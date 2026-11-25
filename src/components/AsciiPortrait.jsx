@@ -182,12 +182,14 @@ export default function AsciiPortrait({ motionEnabled }) {
         )}
 
         {/* Bottom Interactive Pill */}
-        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 bg-black/85 backdrop-blur-md border border-[rgba(204,220,245,0.16)]">
-          <span className="eyebrow text-[#F1EEE8] flex items-center gap-1.5">
-            <Sparkles className="w-3 h-3 text-[#FF8C59]" />
-            {asciiMode ? 'Alphabet Matrix' : 'Hover: Color + Matrix · Click: Morph'}
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 px-3 py-2 bg-black/85 backdrop-blur-md border border-[rgba(204,220,245,0.16)]">
+          <span className="font-mono-code text-[9px] sm:text-[10px] uppercase tracking-wider text-[#F1EEE8] flex items-center gap-1.5 truncate">
+            <Sparkles className="w-3 h-3 text-[#FF8C59] shrink-0" />
+            <span className="truncate">
+              {asciiMode ? 'Alphabet Matrix' : 'Hover: Color · Click: Morph'}
+            </span>
           </span>
-          <span className="font-pixel text-xs text-[#FF8C59]">
+          <span className="font-pixel text-xs text-[#FF8C59] shrink-0 whitespace-nowrap">
             {asciiMode ? 'PHOTO' : 'A–Z'}
           </span>
         </div>

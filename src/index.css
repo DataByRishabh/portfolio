@@ -7,7 +7,7 @@
   --muted: #aaa9a4;
   --accent: #ff8c59;
   --line: rgba(204, 220, 245, 0.14);
-  --gutter: clamp(24px, 5vw, 88px);
+  --gutter: clamp(16px, 4.5vw, 96px);
 }
 
 html {
@@ -105,16 +105,18 @@ body.custom-cursor-active * {
   transform: translate3d(0, 0, 0) scale(1);
 }
 
-/* Scroll-scrubbed depth for project cards across the entire page */
-.motion-enabled .scroll-depth-visual {
-  transform: translate3d(0, calc((var(--card-p, 0.5) - 0.5) * -36px), 0)
-    scale(calc(0.97 + (1 - abs(var(--card-p, 0.5) - 0.5) * 2) * 0.03));
-  will-change: transform;
-}
+/* Scroll-scrubbed depth only on desktop (lg+) so mobile stacks cleanly */
+@media (min-width: 1024px) {
+  .motion-enabled .scroll-depth-visual {
+    transform: translate3d(0, calc((var(--card-p, 0.5) - 0.5) * -36px), 0)
+      scale(calc(0.97 + (1 - abs(var(--card-p, 0.5) - 0.5) * 2) * 0.03));
+    will-change: transform;
+  }
 
-.motion-enabled .scroll-depth-story {
-  transform: translate3d(0, calc((var(--card-p, 0.5) - 0.5) * 24px), 0);
-  will-change: transform;
+  .motion-enabled .scroll-depth-story {
+    transform: translate3d(0, calc((var(--card-p, 0.5) - 0.5) * 24px), 0);
+    will-change: transform;
+  }
 }
 
 /* Expanding hairline divider wipe */
@@ -146,19 +148,28 @@ body.custom-cursor-active * {
   text-transform: uppercase;
 }
 
-/* Floating frosted-glass pill navigation (Zero empty void) */
+/* Floating frosted-glass pill navigation (Mobile, Laptop & TV friendly) */
 .editorial-nav {
-  max-width: 1140px;
-  margin: 14px auto 0;
-  height: 64px;
-  padding: 0 12px 0 22px;
+  width: 100%;
+  max-width: 1240px;
+  margin: 12px auto 0;
+  height: 58px;
+  padding: 0 12px 0 16px;
   border-radius: 9999px;
   border: 1px solid rgba(204, 220, 245, 0.16);
-  background: rgba(14, 14, 18, 0.78);
+  background: rgba(14, 14, 18, 0.84);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+@media (min-width: 768px) {
+  .editorial-nav {
+    margin: 14px auto 0;
+    height: 64px;
+    padding: 0 12px 0 22px;
+  }
 }
 
 /* Top scroll progress indicator */
@@ -196,34 +207,44 @@ body.custom-cursor-active * {
 
 .artifact-rings {
   position: absolute;
-  top: 16%;
-  right: 6%;
-  width: clamp(280px, 36vw, 520px);
-  height: clamp(280px, 36vw, 520px);
-  opacity: 0.42;
+  top: 12%;
+  right: -12%;
+  width: clamp(220px, 52vw, 520px);
+  height: clamp(220px, 52vw, 520px);
+  opacity: 0.18;
   transform: rotate(-30deg);
   pointer-events: none;
 }
 
-.motion-enabled .artifact-rings {
-  animation: orbitSpin 16s ease-in-out infinite;
-  transform: rotate(calc(-30deg + var(--hero-p, 0) * 32deg))
-    scale(calc(1 + var(--hero-p, 0) * 0.22));
-  will-change: transform;
-}
+@media (min-width: 1024px) {
+  .artifact-rings {
+    top: 16%;
+    right: 6%;
+    width: clamp(280px, 36vw, 520px);
+    height: clamp(280px, 36vw, 520px);
+    opacity: 0.42;
+  }
 
-/* Lapz-inspired sticky scroll-linked hero parallax & zoom */
-.motion-enabled .hero-text-parallax {
-  transform: translate3d(calc(var(--hero-p, 0) * -45px), calc(var(--hero-p, 0) * -80px), 0)
-    scale(calc(1 - var(--hero-p, 0) * 0.08));
-  opacity: calc(1 - var(--hero-p, 0) * 1.15);
-  will-change: transform, opacity;
-}
+  .motion-enabled .artifact-rings {
+    animation: orbitSpin 16s ease-in-out infinite;
+    transform: rotate(calc(-30deg + var(--hero-p, 0) * 32deg))
+      scale(calc(1 + var(--hero-p, 0) * 0.22));
+    will-change: transform;
+  }
 
-.motion-enabled .hero-portrait-parallax {
-  transform: translate3d(0, calc(var(--hero-p, 0) * -10px), 0)
-    scale(calc(1 + var(--hero-p, 0) * 0.22));
-  will-change: transform;
+  /* Lapz-inspired sticky scroll-linked hero parallax & zoom (desktop only) */
+  .motion-enabled .hero-text-parallax {
+    transform: translate3d(calc(var(--hero-p, 0) * -45px), calc(var(--hero-p, 0) * -80px), 0)
+      scale(calc(1 - var(--hero-p, 0) * 0.08));
+    opacity: calc(1 - var(--hero-p, 0) * 1.15);
+    will-change: transform, opacity;
+  }
+
+  .motion-enabled .hero-portrait-parallax {
+    transform: translate3d(0, calc(var(--hero-p, 0) * -10px), 0)
+      scale(calc(1 + var(--hero-p, 0) * 0.22));
+    will-change: transform;
+  }
 }
 
 .artifact-rings i {
@@ -245,10 +266,10 @@ body.custom-cursor-active * {
   transform: rotate(120deg) rotateX(65deg);
 }
 
-/* Editorial gutter container */
+/* Editorial gutter container (scales cleanly from mobile to 4K TV) */
 .gutter-box {
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
+  padding-left: max(var(--gutter), calc((100vw - 1440px) / 2));
+  padding-right: max(var(--gutter), calc((100vw - 1440px) / 2));
 }
 
 /* Subtle hairline card */

@@ -214,20 +214,20 @@ export default function App() {
       <div className="scene-backdrop" />
 
       {/* Floating Frosted-Glass Pill Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6">
+      <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6">
         <nav
           aria-label="Primary Navigation"
-          className="editorial-nav flex items-center justify-between gap-4"
+          className="editorial-nav flex items-center justify-between gap-2 sm:gap-4 min-w-0"
         >
           <a
             href="#top"
-            className="flex items-center gap-3 text-sm font-semibold tracking-tight text-[#F1EEE8] hover:opacity-90 transition-opacity shrink-0"
+            className="flex items-center gap-2 sm:gap-3 text-sm font-semibold tracking-tight text-[#F1EEE8] hover:opacity-90 transition-opacity min-w-0"
           >
-            <span className="text-[#FF8C59] font-serif-display text-2xl italic -skew-x-12 leading-none">
+            <span className="text-[#FF8C59] font-serif-display text-xl sm:text-2xl italic -skew-x-12 leading-none shrink-0">
               //
             </span>
-            <span className="tracking-[-0.3px]">{profileData.name}</span>
-            <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FF8C59]/10 border border-[#FF8C59]/25 font-mono-code text-[9px] uppercase tracking-wider text-[#FF8C59]">
+            <span className="tracking-[-0.3px] truncate">{profileData.name}</span>
+            <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FF8C59]/10 border border-[#FF8C59]/25 font-mono-code text-[9px] uppercase tracking-wider text-[#FF8C59] shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF8C59] animate-pulse" />
               Data Science
             </span>
@@ -279,7 +279,7 @@ export default function App() {
 
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="md:hidden p-2 text-[#AAA9A4] hover:text-white"
+            className="md:hidden p-2 rounded-full text-[#F1EEE8] hover:text-[#FF8C59] shrink-0"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? (
@@ -291,50 +291,60 @@ export default function App() {
         </nav>
 
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#0B0B0B] border-b border-[rgba(204,220,245,0.14)] px-6 py-5 flex flex-col gap-4 text-sm text-[#AAA9A4]">
+          <div className="md:hidden mt-2 rounded-2xl bg-[#0B0B0E]/95 backdrop-blur-xl border border-[rgba(204,220,245,0.16)] px-5 py-4 flex flex-col gap-3 text-sm text-[#D8D5CE] shadow-2xl">
             <a
               href="#work"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-[#FF8C59]"
+              className="py-1 hover:text-[#FF8C59]"
             >
               Work
             </a>
             <a
+              href="#credentials"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 hover:text-[#FF8C59]"
+            >
+              Research &amp; Certs
+            </a>
+            <a
               href="#capabilities"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-[#FF8C59]"
+              className="py-1 hover:text-[#FF8C59]"
             >
               Capabilities
             </a>
             <a
-              href="#habits"
-              onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-[#FF8C59]"
-            >
-              Habits
-            </a>
-            <a
               href="#journey"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-[#FF8C59]"
+              className="py-1 hover:text-[#FF8C59]"
             >
               Journey
             </a>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setResumeOpen(true);
+              }}
+              className="py-1 text-left text-[#FF8C59] cursor-pointer"
+            >
+              Resume (PDF)
+            </button>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-[#FF8C59]"
+              className="mt-1 py-2.5 px-4 rounded-full bg-[#F1EEE8] text-[#030303] text-xs font-semibold text-center"
             >
-              Contact
+              Let&apos;s talk
             </a>
           </div>
         )}
       </header>
 
       <main id="top" className="relative z-10">
-        {/* LAPZ-STYLE STICKY SCROLL-ZOOM HERO WRAPPER */}
-        <div ref={heroRef} className="relative md:h-[145vh]">
-          <section className="md:sticky md:top-0 min-h-screen flex flex-col justify-between pt-24 pb-8 gutter-box border-b border-[rgba(204,220,245,0.14)] overflow-hidden bg-[#030303]">
+        {/* LAPZ-STYLE STICKY SCROLL-ZOOM HERO WRAPPER (lg+ only so mobile & tablet flow cleanly) */}
+        <div ref={heroRef} className="relative lg:h-[145vh]">
+          <section className="lg:sticky lg:top-0 lg:min-h-screen flex flex-col justify-between pt-24 pb-8 gutter-box border-b border-[rgba(204,220,245,0.14)] overflow-hidden bg-[#030303]">
           <div className="artifact-rings" aria-hidden="true">
             <i />
             <i />
@@ -376,10 +386,10 @@ export default function App() {
                 {profileData.subheadline}
               </p>
 
-              <div className="flex flex-wrap items-center gap-3.5">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3.5">
                 <a
                   href="#work"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#F1EEE8] text-[#030303] text-xs font-semibold uppercase tracking-wider hover:bg-[#FF8C59] transition-colors"
+                  className="col-span-2 sm:col-span-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-[#F1EEE8] text-[#030303] text-xs font-semibold uppercase tracking-wider hover:bg-[#FF8C59] transition-colors"
                 >
                   Explore Selected Work
                   <ArrowDownRight className="w-4 h-4" />
@@ -388,40 +398,40 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setResumeOpen(true)}
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full border border-[#FF8C59]/60 bg-[#FF8C59]/10 text-xs font-semibold text-[#FF8C59] hover:bg-[#FF8C59] hover:text-[#030303] transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full border border-[#FF8C59]/60 bg-[#FF8C59]/10 text-[11px] sm:text-xs font-semibold text-[#FF8C59] hover:bg-[#FF8C59] hover:text-[#030303] transition-colors cursor-pointer"
                 >
-                  <FileText className="w-4 h-4" />
-                  Resume (PDF)
+                  <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span>Resume (PDF)</span>
                 </button>
 
                 <a
                   href={profileData.githubAnalytics}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full border border-[rgba(204,220,245,0.2)] text-xs text-[#F1EEE8] hover:border-[#FF8C59] hover:text-[#FF8C59] transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full border border-[rgba(204,220,245,0.2)] text-[11px] sm:text-xs text-[#F1EEE8] hover:border-[#FF8C59] hover:text-[#FF8C59] transition-colors"
                 >
-                  <Github className="w-4 h-4" />
-                  Data Science GitHub
+                  <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span className="truncate">Data GitHub</span>
                 </a>
 
                 <a
                   href={profileData.githubDev}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full border border-[rgba(204,220,245,0.14)] text-xs text-[#AAA9A4] hover:border-[#FF8C59] hover:text-[#FF8C59] transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full border border-[rgba(204,220,245,0.14)] text-[11px] sm:text-xs text-[#AAA9A4] hover:border-[#FF8C59] hover:text-[#FF8C59] transition-colors"
                 >
-                  <Github className="w-4 h-4" />
-                  AI &amp; SaaS GitHub
+                  <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span className="truncate">AI &amp; SaaS GitHub</span>
                 </a>
 
                 <a
                   href={profileData.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full border border-[rgba(204,220,245,0.2)] text-xs text-[#F1EEE8] hover:border-[#FF8C59] hover:text-[#FF8C59] transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full border border-[rgba(204,220,245,0.2)] text-[11px] sm:text-xs text-[#F1EEE8] hover:border-[#FF8C59] hover:text-[#FF8C59] transition-colors"
                 >
-                  <Linkedin className="w-4 h-4" />
-                  LinkedIn
+                  <Linkedin className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span>LinkedIn</span>
                 </a>
               </div>
             </div>
@@ -558,13 +568,16 @@ export default function App() {
         {/* REACH / IMPACT STRIP (Slides up over pinned Hero) */}
         <section className="relative z-20 gutter-box border-b border-[rgba(204,220,245,0.14)] bg-[#070707]">
           <Reveal>
-            <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[rgba(204,220,245,0.14)]">
+            <div className="grid grid-cols-2 lg:grid-cols-4 border-l border-r border-[rgba(204,220,245,0.1)] lg:border-0">
               {profileData.metrics.map((item, idx) => (
-                <div key={idx} className="py-10 px-4 sm:px-8 first:pl-0">
-                  <span className="eyebrow text-[#AAA9A4] block mb-3">
+                <div
+                  key={idx}
+                  className="py-7 px-4 sm:py-10 sm:px-8 border-b border-r lg:border-b-0 border-[rgba(204,220,245,0.12)] lg:last:border-r-0"
+                >
+                  <span className="eyebrow text-[#AAA9A4] block mb-2.5 sm:mb-3">
                     {item.eyebrow}
                   </span>
-                  <strong className="font-serif-display text-5xl sm:text-6xl font-normal text-[#F1EEE8] block leading-none mb-2">
+                  <strong className="font-serif-display text-4xl sm:text-6xl font-normal text-[#F1EEE8] block leading-none mb-2">
                     {item.value}
                     {item.accent && (
                       <span className="text-[#FF8C59]">{item.accent}</span>
