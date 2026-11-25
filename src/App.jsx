@@ -693,7 +693,7 @@ export default function App() {
               <div className="lg:col-span-5 scroll-depth-visual">
                 <div className="border border-[rgba(204,220,245,0.16)] bg-[#050507] p-2">
                   <img
-                    src="/images/certs/cert-mat-publication.jpg"
+                    src="images/certs/cert-mat-publication.jpg"
                     alt="MAT Journals Certificate of Publication"
                     width={900}
                     height={630}

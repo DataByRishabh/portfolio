@@ -64,7 +64,7 @@ export const projects = [
       { label: 'Profit Margin', value: '35.83%' },
     ],
     daxSnippet: `Profit Margin % = DIVIDE([Total Profit], [Completed Sales], 0)\nAVG Order Value = DIVIDE([Completed Sales], [Completed Orders], 0)`,
-    image: '/images/powerbi-real-dashboard.jpg',
+    image: 'images/powerbi-real-dashboard.jpg',
     link: 'https://github.com/DataByRishabh/powerbi-analytics-portfolio/tree/main/01-ecommerce-sales-analytics',
     linkLabel: 'View on GitHub',
   },
@@ -82,7 +82,7 @@ export const projects = [
       'Gained hands-on experience in embedded hardware integration, prototyping, and team problem-solving',
     ],
     tags: ['Robotics', 'Arduino', 'Embedded Systems', 'Hardware Prototyping'],
-    image: '/images/batman-robotics.jpg',
+    image: 'images/batman-robotics.jpg',
     link: 'https://www.linkedin.com/in/rishabh-sonawane-554014387',
     linkLabel: 'View on LinkedIn',
   },
@@ -100,7 +100,7 @@ export const projects = [
       'Deployed live on Vercel to validate end-to-end user data flow',
     ],
     tags: ['AI Logic', 'Prompt Engineering', 'Telemetry Modeling', 'Antigravity'],
-    image: '/images/vyronix-preview.jpg',
+    image: 'images/vyronix-preview.jpg',
     visualType: 'vyronix-pipeline',
     link: 'https://vyronix-web.vercel.app/',
     linkLabel: 'Inspect Live Concept',
@@ -119,7 +119,7 @@ export const projects = [
       'Focused on data structure and problem-solving rather than manual UI engineering',
     ],
     tags: ['Data Modeling', 'ERD Logic', 'Healthcare Analytics', 'Antigravity'],
-    image: '/images/relief-preview.jpg',
+    image: 'images/relief-preview.jpg',
     visualType: 'relief-erd',
     link: 'https://github.com/risdev18/relief-hoapilal',
     linkLabel: 'View Repository',
@@ -202,7 +202,7 @@ export const certifications = [
     date: 'Apr 2026',
     detail:
       'Won 3rd Prize at the National Level Anveshnam Workshop (SJCEM) and published in MAT Journals (Vol. 12, Issue 1, 2026). Uses Multivariate Linear Regression, Gaussian noise characterization, Fisher’s Kurtosis, and ArUco vision resets.',
-    image: '/images/certs/cert-mat-publication.jpg',
+    image: 'images/certs/cert-mat-publication.jpg',
   },
   {
     id: 'nasscom-llm',
@@ -213,7 +213,7 @@ export const certifications = [
     date: 'Feb 2026',
     detail:
       'Foundational certification covering Large Language Models, AI architecture, and practical developer workflows.',
-    image: '/images/certs/cert-nasscom-llm.jpg',
+    image: 'images/certs/cert-nasscom-llm.jpg',
   },
   {
     id: 'ey-microsoft',
@@ -224,7 +224,7 @@ export const certifications = [
     date: '2026',
     detail:
       'Completed employability and AI technology modules offered jointly by EY and Microsoft.',
-    image: '/images/certs/cert-ey-microsoft.jpg',
+    image: 'images/certs/cert-ey-microsoft.jpg',
   },
   {
     id: 'data-analyst-101',
@@ -235,7 +235,7 @@ export const certifications = [
     date: 'Nov 2025',
     detail:
       'Core data analytics foundations, KPI interpretation, and analytical problem-solving (Certificate Code: 9498204).',
-    image: '/images/certs/cert-data-analyst.jpg',
+    image: 'images/certs/cert-data-analyst.jpg',
   },
   {
     id: 'prompt-eng',

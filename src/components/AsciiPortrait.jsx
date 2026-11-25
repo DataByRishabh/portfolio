@@ -134,7 +134,7 @@ export default function AsciiPortrait({ motionEnabled }) {
         >
           {!imgError ? (
             <img
-              src="/images/portrait.jpg"
+              src="images/portrait.jpg"
               alt="Rishabh Sonawane Portrait"
               width={340}
               height={425}
