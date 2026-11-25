@@ -1,0 +1,326 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #030303;
+  --surface: #0b0b0b;
+  --ink: #f1eee8;
+  --muted: #aaa9a4;
+  --accent: #ff8c59;
+  --line: rgba(204, 220, 245, 0.14);
+  --gutter: clamp(24px, 5vw, 88px);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.font-serif-display {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-syne {
+  font-family: 'Syne', 'DM Sans', sans-serif;
+}
+
+.font-pixel {
+  font-family: 'Pixelify Sans', monospace;
+  letter-spacing: 0.04em;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Mouse-reactive cursor spotlight (Hardik Bhansali style) */
+.cursor-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    520px circle at var(--mouse-x, 50%) var(--mouse-y, 35%),
+    rgba(255, 140, 89, 0.065),
+    transparent 65%
+  );
+  transition: opacity 0.4s ease;
+}
+
+/* Cinematic intro curtain */
+@keyframes curtainOut {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.intro-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: #030303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: curtainOut 0.75s cubic-bezier(0.77, 0, 0.175, 1) 0.55s forwards;
+  pointer-events: none;
+}
+
+/* Smooth IntersectionObserver Scroll-Reveal + Page-Wide DJI-style Choreography */
+.reveal-block {
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.motion-enabled .reveal-hidden {
+  opacity: 0;
+  transform: translate3d(0, 38px, 0) scale(0.96);
+  clip-path: inset(6% 0% 0% 0%);
+}
+
+.motion-enabled .reveal-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  clip-path: inset(0% 0% 0% 0%);
+}
+
+/* Scroll-scrubbed depth for project cards across the entire page */
+.motion-enabled .scroll-depth-visual {
+  transform: translate3d(0, calc((var(--card-p, 0.5) - 0.5) * -36px), 0)
+    scale(calc(0.97 + (1 - abs(var(--card-p, 0.5) - 0.5) * 2) * 0.03));
+  will-change: transform;
+}
+
+.motion-enabled .scroll-depth-story {
+  transform: translate3d(0, calc((var(--card-p, 0.5) - 0.5) * 24px), 0);
+  will-change: transform;
+}
+
+/* Expanding hairline divider wipe */
+.divider-wipe {
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.motion-enabled .reveal-hidden .divider-wipe {
+  transform: scaleX(0);
+}
+
+.motion-enabled .reveal-visible .divider-wipe {
+  transform: scaleX(1);
+}
+
+/* Staggered buffer delays for habits and cards */
+.delay-step-1 { transition-delay: 60ms; }
+.delay-step-2 { transition-delay: 140ms; }
+.delay-step-3 { transition-delay: 220ms; }
+.delay-step-4 { transition-delay: 300ms; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1.4px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.65;
+  text-transform: uppercase;
+}
+
+/* Floating frosted-glass pill navigation (Zero empty void) */
+.editorial-nav {
+  max-width: 1140px;
+  margin: 14px auto 0;
+  height: 64px;
+  padding: 0 12px 0 22px;
+  border-radius: 9999px;
+  border: 1px solid rgba(204, 220, 245, 0.16);
+  background: rgba(14, 14, 18, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Top scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 70;
+  transition: width 0.08s linear;
+}
+
+/* Ambient radial spotlight */
+.scene-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(at 78% 36%, rgba(45, 45, 48, 0.45), transparent 48%);
+}
+
+/* Sarthak-style 3D orbital ring artifact */
+@keyframes orbitSpin {
+  0% {
+    transform: rotate(-30deg) rotateY(0deg);
+  }
+  50% {
+    transform: rotate(-22deg) rotateY(18deg);
+  }
+  100% {
+    transform: rotate(-30deg) rotateY(0deg);
+  }
+}
+
+.artifact-rings {
+  position: absolute;
+  top: 16%;
+  right: 6%;
+  width: clamp(280px, 36vw, 520px);
+  height: clamp(280px, 36vw, 520px);
+  opacity: 0.42;
+  transform: rotate(-30deg);
+  pointer-events: none;
+}
+
+.motion-enabled .artifact-rings {
+  animation: orbitSpin 16s ease-in-out infinite;
+  transform: rotate(calc(-30deg + var(--hero-p, 0) * 32deg))
+    scale(calc(1 + var(--hero-p, 0) * 0.22));
+  will-change: transform;
+}
+
+/* Lapz-inspired sticky scroll-linked hero parallax & zoom */
+.motion-enabled .hero-text-parallax {
+  transform: translate3d(calc(var(--hero-p, 0) * -45px), calc(var(--hero-p, 0) * -80px), 0)
+    scale(calc(1 - var(--hero-p, 0) * 0.08));
+  opacity: calc(1 - var(--hero-p, 0) * 1.15);
+  will-change: transform, opacity;
+}
+
+.motion-enabled .hero-portrait-parallax {
+  transform: translate3d(0, calc(var(--hero-p, 0) * -10px), 0)
+    scale(calc(1 + var(--hero-p, 0) * 0.22));
+  will-change: transform;
+}
+
+.artifact-rings i {
+  position: absolute;
+  inset: 0;
+  border-radius: 46% 54% 52% 48%;
+  border: 18px ridge rgba(171, 171, 171, 0.45);
+  box-shadow: inset 0 0 28px rgba(101, 101, 101, 0.45),
+    0 0 28px rgba(47, 47, 47, 0.4);
+  transform: rotateX(38deg);
+}
+
+.artifact-rings i:nth-child(2) {
+  transform: rotate(60deg) rotateY(55deg);
+  border-color: rgba(255, 140, 89, 0.22);
+}
+
+.artifact-rings i:nth-child(3) {
+  transform: rotate(120deg) rotateX(65deg);
+}
+
+/* Editorial gutter container */
+.gutter-box {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Subtle hairline card */
+.surface-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.surface-card:hover {
+  border-color: rgba(255, 140, 89, 0.38);
+}
+
+.motion-enabled .surface-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Bottom-right fixed motion toggle */
+.motion-toggle-fixed {
+  position: fixed;
+  bottom: 20px;
+  right: 22px;
+  z-index: 40;
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(14, 14, 14, 0.9);
+  color: #c6c6c6;
+  border-radius: 3px;
+  padding: 8px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232326;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Clean 1-page PDF Print styling for ResumeModal */
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #printable-resume,
+  #printable-resume * {
+    visibility: visible;
+  }
+  #printable-resume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0 !important;
+  }
+}

@@ -1,0 +1,33 @@
+# Rishabh Sonawane — Portfolio & Data Analytics Profile
+
+> B.Tech Data Science student (2025–2029) at St. John College of Engineering and Management, Palghar, Maharashtra, India. Focused on Power BI, DAX, SQL, Python, and AI-accelerated product building.
+
+## Core Competencies (Hands-On)
+- Business Intelligence: Microsoft Power BI Desktop, DAX Measures, Star Schema Data Modeling, Power Query (ETL), KPI Design
+- Querying & Programming: SQL (Basic to Intermediate), C, C++
+- AI & LLMs: Prompt Engineering, Large Language Models (LLMs), AI-Assisted Development (Antigravity)
+- Content & Growth: YouTube Channel Management, Content Strategy, Audience Analytics
+
+## Selected Projects
+1. **E-Commerce Sales, Profit & Customer Analytics** (Power BI, DAX, Star Schema)
+   - Repository: https://github.com/DataByRishabh/powerbi-analytics-portfolio/tree/main/01-ecommerce-sales-analytics
+   - Tracks 6 KPIs: Completed Sales, Net Profit, Profit Margin %, Total Orders, Average Order Value (AOV), Total Customers.
+2. **Vyronix / Prana AI — Smart Fitness Platform** (AI-Assisted Build via Antigravity)
+   - Live Demo: https://vyronix-web.vercel.app/
+   - Product vision, UX direction, and rapid AI-accelerated deployment on Vercel.
+3. **Relief Hospital Management System** (AI-Assisted Build via Antigravity)
+   - Repository: https://github.com/risdev18/relief-hoapilal
+   - Healthcare workflow and structured data concept.
+
+## Certifications
+- Data Analyst 101
+- AI Skills Passport
+- LLM For Young Developers – Foundational Course
+- Python for Prompt Engineering
+- Statistical Machine Learning-based Odometry Correction
+
+## Contact & Profiles
+- Email: rishabhsonawane333@gmail.com
+- LinkedIn: https://www.linkedin.com/in/rishabh-sonawane-554014387
+- GitHub (Analytics): https://github.com/DataByRishabh
+- GitHub (Builds): https://github.com/risdev18

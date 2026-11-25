@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# AI & LLM Crawlers (AIO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://rishabh-sonawane-portfolio.vercel.app/sitemap.xml
