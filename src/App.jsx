@@ -72,7 +72,7 @@ function Reveal({ children, className = '', delayClass = '' }) {
 export default function App() {
   const motionEnabled = true;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [projectsOpen, setProjectsOpen] = useState(false);
+  const [projectsOpen, setProjectsOpen] = useState(true);
   const [activeFilter, setActiveFilter] = useState('All');
   const [openCapability, setOpenCapability] = useState('bi-dax');
   const [selectedProjectModal, setSelectedProjectModal] = useState(null);
@@ -618,23 +618,30 @@ export default function App() {
                 type="button"
                 onClick={() => setProjectsOpen((prev) => !prev)}
                 aria-expanded={projectsOpen}
-                className="group inline-flex items-center justify-between gap-5 px-6 py-4 rounded-2xl border border-[rgba(204,220,245,0.2)] bg-[#0A0A0D] hover:border-[#FF8C59] transition-all duration-300 cursor-pointer text-left"
+                className={`group inline-flex items-center justify-between gap-5 px-6 py-4 rounded-2xl border transition-all duration-300 cursor-pointer text-left ${
+                  projectsOpen
+                    ? 'border-[rgba(255,140,89,0.45)] bg-[#0E0E13] hover:border-[#FF8C59]'
+                    : 'border-[#FF8C59] bg-[#FF8C59]/12 shadow-[0_0_30px_rgba(255,140,89,0.22)] hover:bg-[#FF8C59]/20'
+                }`}
               >
                 <div>
-                  <span className="eyebrow text-[#FF8C59] block">
-                    {projectsOpen ? 'Hide Projects' : `View Projects (0${projects.length})`}
-                  </span>
-                  <span className="text-xs text-[#AAA9A4] mt-1 block">
+                  <span className="eyebrow text-[#FF8C59] flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#FF8C59] animate-pulse" />
                     {projectsOpen
-                      ? 'Hover on any project card for 3D tilt & preview'
-                      : 'Click dropdown to explore · Hover cards to interact'}
+                      ? `Showing 0${projects.length} Projects`
+                      : `View All 0${projects.length} Projects`}
+                  </span>
+                  <span className="text-xs text-[#D4D2CC] mt-1 block">
+                    {projectsOpen
+                      ? 'Hover cards for 3D tilt · Click to collapse'
+                      : 'Click to reveal live builds & interactive case studies'}
                   </span>
                 </div>
                 <span
-                  className={`w-9 h-9 rounded-full border border-[rgba(204,220,245,0.18)] flex items-center justify-center transition-transform duration-300 ${
+                  className={`w-9 h-9 rounded-full border flex items-center justify-center transition-transform duration-300 ${
                     projectsOpen
                       ? 'rotate-180 bg-[#FF8C59] text-[#030303] border-[#FF8C59]'
-                      : 'text-[#F1EEE8] group-hover:border-[#FF8C59] group-hover:text-[#FF8C59]'
+                      : 'bg-[#FF8C59] text-[#030303] border-[#FF8C59] group-hover:scale-105'
                   }`}
                 >
                   <ChevronDown className="w-4 h-4" />
@@ -645,7 +652,7 @@ export default function App() {
 
           {projectsOpen && (
             <div className="pt-8 border-t border-[rgba(204,220,245,0.14)]">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-14">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
                 <div className="flex flex-wrap items-center gap-2">
                   {filterTabs.map((tab) => {
                     const isActive = activeFilter === tab.id;
