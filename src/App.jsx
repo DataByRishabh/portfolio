@@ -19,10 +19,12 @@ import AsciiPortrait from './components/AsciiPortrait';
 import CredentialsVault from './components/CredentialsVault';
 import CustomCursor from './components/CustomCursor';
 import DataArchitectureVisual from './components/DataArchitectureVisual';
+import DataGlobeNetwork from './components/DataGlobeNetwork';
 import DataWorkbench from './components/DataWorkbench';
 import LivingDataUniverse from './components/LivingDataUniverse';
 import ModelTrainingPipeline from './components/ModelTrainingPipeline';
 import ParticleNameReveal from './components/ParticleNameReveal';
+import PortfolioAssistant from './components/PortfolioAssistant';
 import ResumeModal from './components/ResumeModal';
 import ScrambleText from './components/ScrambleText';
 import TiltCard from './components/TiltCard';
@@ -887,6 +889,18 @@ export default function App() {
           </Reveal>
         </section>
 
+        {/* INTERACTIVE 3D KNOWLEDGE GLOBE (Below Certifications) */}
+        <section
+          id="explore-ai"
+          className="gutter-box py-20 border-b border-[rgba(204,220,245,0.14)] bg-[#040406]"
+        >
+          <Reveal>
+            <DataGlobeNetwork
+              onSelectProject={(proj) => setSelectedProjectModal(proj)}
+            />
+          </Reveal>
+        </section>
+
         {/* CAPABILITIES */}
         <section
           id="capabilities"
@@ -1164,6 +1178,9 @@ export default function App() {
           </footer>
         </section>
       </main>
+
+      {/* FLOATING BOTTOM-RIGHT RISBOT CHATBOT */}
+      <PortfolioAssistant />
 
       {/* ATS-READY RESUME MODAL */}
       <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />

@@ -88,23 +88,21 @@ body.custom-cursor-active * {
   pointer-events: none;
 }
 
-/* Smooth IntersectionObserver Scroll-Reveal + Page-Wide DJI-style Choreography */
+/* Smooth IntersectionObserver Scroll-Reveal */
 .reveal-block {
+  overflow: visible;
   transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-    clip-path 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .motion-enabled .reveal-hidden {
   opacity: 0;
-  transform: translate3d(0, 38px, 0) scale(0.96);
-  clip-path: inset(6% 0% 0% 0%);
+  transform: translate3d(0, 32px, 0) scale(0.97);
 }
 
 .motion-enabled .reveal-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
-  clip-path: inset(0% 0% 0% 0%);
 }
 
 /* Scroll-scrubbed depth for project cards across the entire page */
